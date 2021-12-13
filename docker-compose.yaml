@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - 27017:27017
+  app:
+    container_name: deck-app
+    restart: always
+    build: .
+    env_file: .env
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo

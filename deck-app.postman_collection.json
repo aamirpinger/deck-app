@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "39d3ce43-85dc-42b1-95ba-d2b25c8b4534",
+		"name": "deck-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a new Deck",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"SHORT\",\r\n    \"shuffled\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"create"
+					]
+				},
+				"description": "**Request Parameters are as follows**\n\n``` json\n{\n    \"type\": String,\n    \"shuffled\": Boolean\n}\n\n```\n\n**Response will be:**\n\n``` json\n{\n    \"deckId\": String,\n    \"type\": String,\n    \"shuffled\": Boolean,\n    \"remaining\": Number\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "open-the-deck",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"deckId\": \"36aad9e6-acda-4b5c-8c43-965a939cb5fb\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/open-the-deck",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"open-the-deck"
+					]
+				},
+				"description": "**Request Parameters are as follows**\n\n``` json\n{\n    \"deckId\": UUID (REQUIRED)\n}\n\n```\n\n**Response will be:**\n\n``` json\n{\n    \"deckId\": String,\n    \"type\": String,\n    \"shuffled\": Boolean,\n    \"remaining\": Number,\n    \"cards\": [\n        {\n            \"value\": String,\n            \"suit\": String,\n            \"code\": String\n        },\n    ]\n}\n\n```"
+			},
+			"response": []
+		},
+		{
+			"name": "draw-card",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"deckId\": \"36aad9e6-acda-4b5c-8c43-965a939cb5fb\",\r\n    \"count\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/draw-card",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"draw-card"
+					]
+				},
+				"description": "**Request Parameters are as follows**\n\n``` json\n{\n    \"deckId\": UUID,\n    \"count\": Number\n}\n\n```\n\n**Response will be:**\n\n``` json\n{\n    \"cards\": [\n        {\n            \"value\": String,\n            \"suit\": String,\n            \"code\": String\n        },\n    ]\n}\n\n```"
+			},
+			"response": []
+		}
+	]
+}
